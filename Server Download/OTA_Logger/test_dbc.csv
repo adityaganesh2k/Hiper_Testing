@@ -1,0 +1,10 @@
+BLANK
+data log mode
+no of can ids
+request can id
+response can id
+baud rate
+no of request params
+can req id,can ext param,length,SID,PID1,PID2,
+no of ecu msgs
+can req id,can ext param,length,SID,PID1,PID2,
