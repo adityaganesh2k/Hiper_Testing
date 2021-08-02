@@ -88,6 +88,7 @@
 	uint8_t ENG_RUNNING=0;
 	uint8_t IGN_ON=0;
     //RTC WAKE UP FLAG
+
 	uint8_t RTC_Fail = 0;
 	uint8_t RTC_Wake = 0;
 	char buff[35];
@@ -135,6 +136,26 @@
 	int get_date = 0, timer7_mode = 1, counter = 0, download_timeout = 60;
 
 	uint32_t tracker_req = 0, log_tracker_brd = 0, log_tracker_req = 0;
+
+	//Wifi Initialization
+	void wifi_init()
+	{
+		RCC_GPIOA_CLOCK_ENABLE_CLK();
+		GPIO_Config_Mode(GPIOA, GPIO_PIN_12, GPIO_MODE_OUT);
+		GPIO_Config_OType(GPIOA, GPIO_PIN_12, GPIO_OTYPE_PP);
+		GPIO_Config_Speed(GPIOA, GPIO_PIN_12, GPIO_LOW_SPEED);
+		GPIO_Config_PuPd(GPIOA, GPIO_PIN_12, GPIO_PUPD_UP);
+	}
+	//wifi power on
+	void wifi_power_on()
+	{
+		GPIO_Write_Bit(GPIOA, GPIO_PIN_12, 0);
+	}
+	//wifi power off
+	void wifi_power_off()
+	{
+		GPIO_Write_Bit(GPIOA, GPIO_PIN_12, 1);
+	}
 
 	void RTC_Heartbeat(uint8_t success)
 	{
@@ -474,6 +495,35 @@
 				}
 			}
 			ver_5=atoi(s);
+			memset(config_buf, 0, sizeof(config_buf));
+			f_gets(config_buf, 10, &file);
+
+			memset(config_buf, 0, sizeof(config_buf));
+			f_gets(config_buf, 10, &file);
+
+
+			memset(config_buf, 0, sizeof(config_buf));
+			f_gets(config_buf, 10, &file);
+
+			memset(config_buf, 0, sizeof(config_buf));
+			f_gets(config_buf, 10, &file);
+			memset(s, 0, sizeof(s));
+			i = 0;
+			k = 1;
+			while (k)
+			{
+				if (config_buf[i] != '\n')
+				{
+					s[i] = config_buf[i];
+					i++;
+				}
+				else
+				{
+					s[i] = '\0';
+					k = 0;
+				}
+			}
+			RTC_Wake = atoi(s);
 
 			do
 			{
@@ -2129,7 +2179,7 @@
 					{
 						if(RTC_Wake == 2)
 						{
-							if(RTC_Fail <2)
+							if(RTC_Fail <= 2)
 							{
 								esp_counter_active = 1;
 								esp_counter = 0;
@@ -2137,6 +2187,9 @@
 							}
 							else
 							{
+
+								wifi_power_off();
+
 								esp_counter_active = 0;
 								esp_counter = 0;
 								RTC_Wake = 0;
@@ -2635,31 +2688,34 @@
 					//RESET ESP COUNTER
 					esp_counter=0;
 					esp_counter_active=0;
+					RTC_Fail ++;
 					//send command for hearbeat again try for 2 times
-					if(RTC_Fail<2)
+					if(RTC_Fail<= 2)
 					{
 						GPIO_Write_Bit(GPIOB,GPIO_PIN_15, 0);
 						for(int i=0; i<1000; i++);
 						GPIO_Write_Bit(GPIOB,GPIO_PIN_15, 1);
 						for(int i=0; i<10000; i++);
-						RTC_Heartbeat(1);
+						//RTC_Heartbeat(1);
 					}
 					else
 					{
 						//store the data by creating a file
 						RTC_Wake = 0;
+						RTC_Fail = 0;
+						wifi_power_off();
 
 
 
 
 						//DONGLE SWITCH OFF HERE
 					}
-					RTC_Fail ++;
+
 					break;
                 /* RTC HEARTBEAT SUCCESS */
 				case 'R':
 					RTC_Fail = 0;//RESET RTC FAIL FLAG TO 0
-
+					wifi_power_off();
 					RTC_Wake = 0;
 
 
@@ -2856,8 +2912,8 @@
 		esp_counter_active = 1;
 		NVIC_EnableIRQ(TIM7_IRQn);
 		esp_counter = 0;
-
-		while (file_transfer_ready==0 && esp_counter< ESP_COUNTER_TIMEOUT)
+		TM_WATCHDOG_Reset();
+		while (file_transfer_ready==0 && esp_counter< 25)
 		{}
 		if(file_transfer_ready==0)
 		{
@@ -2971,6 +3027,8 @@
 	{
 
 
+		wifi_power_on();
+
 		tempregister = (uint32_t)(RTC->ISR & RTC_ISR_WUTF);
 
 		EXTI->PR |= EXTI_PR_PR22;
@@ -2979,7 +3037,38 @@
 		RTC_Auto_Wakeup_Unit_Reset();
 		if(STM_SLEEP)
 		{
-			RETFROM_SLEEP();//SO THAT DEVICE DOES NOT REENTER SLEEP
+			//mount card
+			RCC_GPIOA_CLOCK_ENABLE_CLK();
+			GPIO_Config_Mode(GPIOA, GPIO_PIN_7, GPIO_MODE_OUT);
+			GPIO_Config_OType(GPIOA, GPIO_PIN_7, GPIO_OTYPE_PP);
+			GPIO_Config_Speed(GPIOA, GPIO_PIN_7, GPIO_LOW_SPEED);
+			GPIO_Write_Bit(GPIOA, GPIO_PIN_7, 1);
+			//Initialize pins and SDIO peripheral
+			SD_SDIOInit();
+			for (int i = 0; i < 1000; i++)
+				;
+
+			//FATFS
+			/* Register work area */
+			res = f_mount(&fs, "", 0);
+			for (int i = 0; i < 1000; i++)
+				;
+
+			res = f_open(&boot_config, "config.csv", FA_OPEN_ALWAYS | FA_WRITE | FA_READ);
+
+			int k = 13;
+			while (k)
+			{
+				memset(temp_buf, 0, sizeof(temp_buf));
+				f_gets(temp_buf, 20, &boot_config);
+				k--;
+			}
+			res = f_write(&boot_config, "1\n", 2, &bw);
+
+			res = f_close(&boot_config);
+
+			RETFROM_SLEEP();
+			//RETFROM_SLEEP();//SO THAT DEVICE DOES NOT REENTER SLEEP
 		}
         rtc_counter ++;
 		RTC_Wake = 1;
@@ -3399,6 +3488,7 @@
 	}
 	void LOW_POWER_MODE(void)
 	{
+		wifi_power_off();
 		//DISABLE ALL OTHER INTERRUPTS
 		NVIC_DisableIRQ(USART2_IRQn);
 		NVIC_DisableIRQ(USART3_IRQn);
@@ -3438,6 +3528,9 @@
 			request_can_id[0]=0xFFFFFFFF;
 			request_can_id[1]=0xFFFFFFFF;
 		// Mount SD card and Check for Config file 
+			wifi_init();
+			wifi_power_on();
+			wifi_power_off();
 			mount_card();
 			config_file();
 			load_dbc();
@@ -4088,6 +4181,10 @@ int main()
 					break;
 				}
 			}
+			if ((upload_complete == 1 || wifi_fail > 3) && update_checked > 1)
+			{
+				wifi_power_off();
+			}
 		}
 
 		if(stop_logging > 30)
@@ -4106,6 +4203,8 @@ int main()
 	
 		if(IGN_ON == 0)
 		{
+			wifi_power_on();
+
 			if(write_once == 0)
 			{
 				write_once = 1;
