@@ -22,7 +22,7 @@
 #include <stdbool.h>
 #include "rtc_driver.h"
 //Timeout Macros
-#define ESP_COUNTER_TIMEOUT 15//CHANGE IT BAKC TO 40
+#define ESP_COUNTER_TIMEOUT 40//CHANGE IT BAKC TO 40
 #define UPLOAD_TIMER_TIMEOUT 1000
 #define RTC_WAKEUP_TIMEOUT 476
 	//FATFS Variables
@@ -3577,14 +3577,14 @@
 					{
 						res = f_open(&RTC_file, "config.csv", FA_OPEN_ALWAYS | FA_WRITE | FA_READ);
 
-						int k = 13;
+						int k = 10;
 						while (k)
 						{
 							memset(temp_buf, 0, sizeof(temp_buf));
 							f_gets(temp_buf, 20, &RTC_file);
 							k--;
 						}
-						res = f_write(&RTC_file, "0\n", 2, &bw);
+						res = f_write(&RTC_file, "0", 1, &bw);
 
 						res = f_close(&RTC_file);
 
