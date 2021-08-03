@@ -27,7 +27,7 @@
 #define RTC_WAKEUP_TIMEOUT 476
 	//FATFS Variables
 	FATFS fs;            	  	/* Filesystem object */
-	FIL file, boot_config, file_down, IFT, filex;           			/* File object */
+	FIL file, boot_config, file_down, IFT, filex,RTC_file;           			/* File object */
 	FRESULT res;        			/* API result code */
 	FILINFO fno;							/* File information */
 	UINT bw, br;            	/* Bytes written */
@@ -1113,6 +1113,7 @@
 	
 	void new_file()
 	{
+
 		char temp_buf[6];
 		memset(filename,0,15);
 		strncpy(filename, "t_", 2);
@@ -3584,6 +3585,19 @@
 				{
 					if(IWDG_SET || (RTC_Wake == 1))
 					{
+						res = f_open(&RTC_file, "config.csv", FA_OPEN_ALWAYS | FA_WRITE | FA_READ);
+
+						int k = 13;
+						while (k)
+						{
+							memset(temp_buf, 0, sizeof(temp_buf));
+							f_gets(temp_buf, 20, &RTC_file);
+							k--;
+						}
+						res = f_write(&RTC_file, "0\n", 2, &bw);
+
+						res = f_close(&RTC_file);
+
 						esp_counter = 0;
 						esp_counter_active = 0;
 						break;
@@ -3596,7 +3610,10 @@
 				}
 		//Create a new Temp File
 			filename_flag = 0;
-			new_file();
+			if(!RTC_Wake)
+			{
+				new_file();
+			}
 
 			ESP_Init();
 			
