@@ -3035,8 +3035,11 @@
 		NVIC_ClearPendingIRQ(RTC_WKUP_IRQn);
 
 		RTC_Auto_Wakeup_Unit_Reset();
+
 		if(STM_SLEEP)
 		{
+			TM_WATCHDOG_Init(TM_WATCHDOG_Timeout_32s);
+		    IWDG_SET=1;
 			//mount card
 			RCC_GPIOA_CLOCK_ENABLE_CLK();
 			GPIO_Config_Mode(GPIOA, GPIO_PIN_7, GPIO_MODE_OUT);
@@ -3066,6 +3069,7 @@
 			res = f_write(&boot_config, "1\n", 2, &bw);
 
 			res = f_close(&boot_config);
+
 
 			RETFROM_SLEEP();
 			//RETFROM_SLEEP();//SO THAT DEVICE DOES NOT REENTER SLEEP
@@ -3578,7 +3582,7 @@
 				esp_counter_active = 1;
 				while(1)
 				{
-					if(IWDG_SET)
+					if(IWDG_SET || (RTC_Wake == 1))
 					{
 						esp_counter = 0;
 						esp_counter_active = 0;
@@ -3859,7 +3863,6 @@ int main()
 
 			SCB->AIRCR=0x05fa0004;
 		}
-		/*
 		if(heartbeat > 18000)
 		{
 			memset(file_ending,0,sizeof(file_ending));
@@ -3919,7 +3922,6 @@ int main()
 
 			SCB->AIRCR=0x05fa0004;
 		}
-		*/
 
 		if(IGN_ON == 1 && ENG_RUNNING == 0 && Update_payload == 1)
 		{
