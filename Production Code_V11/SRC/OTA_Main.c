@@ -3859,6 +3859,7 @@ int main()
 
 			SCB->AIRCR=0x05fa0004;
 		}
+		/*
 		if(heartbeat > 18000)
 		{
 			memset(file_ending,0,sizeof(file_ending));
@@ -3918,6 +3919,7 @@ int main()
 
 			SCB->AIRCR=0x05fa0004;
 		}
+		*/
 
 		if(IGN_ON == 1 && ENG_RUNNING == 0 && Update_payload == 1)
 		{

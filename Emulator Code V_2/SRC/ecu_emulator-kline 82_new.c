@@ -484,7 +484,7 @@ int main()
 	NVIC_EnableIRQ(USART6_IRQn);	   //enable from NVIC
 
 	WiFi_Button_Init();
-    TIMEOUT = 3600;
+    TIMEOUT = 5400;
     ENG_RUNNING = 1;
 	while (1)
 	{
@@ -563,14 +563,14 @@ int main()
 			}
 			else if(tim >= TIMEOUT && ENG_RUNNING )
 			{
-				if(TIMEOUT == 3600)
+				if(TIMEOUT == 5400)
 				{
 					tim = 0;
-					TIMEOUT = 1800;
+					TIMEOUT = 2700;
 					ENG_RUNNING = 0;
 
 				}
-				else if(TIMEOUT == 1800)
+				else if(TIMEOUT == 2700)
 				{
 					tim = 0;
 					TIMEOUT = 300;
@@ -582,17 +582,17 @@ int main()
 			}
 			else if(tim > TIMEOUT && !ENG_RUNNING)
 			{
-				if(TIMEOUT == 1800)
+				if(TIMEOUT == 2700)
 				{
 					tim = 0;
-					TIMEOUT = 1800;
+					TIMEOUT = 2700;
 					ENG_RUNNING = 1;
 
 				}
 				else if(TIMEOUT == 300)
 				{
 					tim = 0;
-					TIMEOUT = 3600;
+					TIMEOUT = 5400;
 					ENG_RUNNING = 1;
 
 				}
