@@ -497,16 +497,6 @@
 			ver_5=atoi(s);
 			memset(config_buf, 0, sizeof(config_buf));
 			f_gets(config_buf, 10, &file);
-
-			memset(config_buf, 0, sizeof(config_buf));
-			f_gets(config_buf, 10, &file);
-
-
-			memset(config_buf, 0, sizeof(config_buf));
-			f_gets(config_buf, 10, &file);
-
-			memset(config_buf, 0, sizeof(config_buf));
-			f_gets(config_buf, 10, &file);
 			memset(s, 0, sizeof(s));
 			i = 0;
 			k = 1;
@@ -3060,7 +3050,7 @@
 
 			res = f_open(&boot_config, "config.csv", FA_OPEN_ALWAYS | FA_WRITE | FA_READ);
 
-			int k = 13;
+			int k = 10;
 			while (k)
 			{
 				memset(temp_buf, 0, sizeof(temp_buf));
