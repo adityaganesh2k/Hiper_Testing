@@ -3870,65 +3870,65 @@ int main()
 
 			SCB->AIRCR=0x05fa0004;
 		}
-		if(heartbeat > 18000)
-		{
-			memset(file_ending,0,sizeof(file_ending));
-			memcpy(file_ending,z.time,6);
-			strncat(file_ending,",",1);
-			strncat(file_ending,"SYS RESET\n",10);
-			res = f_write(&file,file_ending,17,&bw);
-
-			for(int s = 0; s < wh_counter; s++)
-			{
-				memset(file_ending,0,sizeof(file_ending));
-				memcpy(file_ending,wh[s].time,6);
-				strncat(file_ending,",",1);
-				sprintf(wh_temp,"%1x",wh[s].type);
-				strncat(file_ending,wh_temp,1);
-				strncat(file_ending,"\n",1);
-				for(int q=0;q<500;q++)
-				{}
-				res = f_write(&file, file_ending, 9, &bw);
-				for(int q=0;q<500;q++)
-				{}
-			}
-			if(gps_log_flag)
-			{
-				memset(file_ending,0,sizeof(file_ending));
-				strncat(file_ending,"START DATE: ",12);
-				strncat(file_ending,Start_Date,6);
-				strncat(file_ending,"\n",1);
-				res = f_write(&file, file_ending, 19, &bw);
-
-				memset(file_ending,0,sizeof(file_ending));
-				strncat(file_ending,"END DATE: ",10);
-				strncat(file_ending,z.date,6);
-				strncat(file_ending,"\n",1);
-				res = f_write(&file, file_ending, 17, &bw);
-			}
-			memset(version_log,0,sizeof(version_log));
-			sprintf(version_log, "Payload:%02d,%02d\nCMD:%02d,%02d\nECU:%02d,%02d\nSTM:%02d\nDriver:01\n",ver_1, pay_ver, ver_3, cmd_ver, ver_4, ecu_ver, ver_5);
-			res = f_write(&file, version_log, 51, &bw);
-			memset(file_ending,0,sizeof(file_ending));
-			sprintf(file_ending, "DBC:%02d,", ver_2);
-			strncat(file_ending,dbc_ver,11);
-			strncat(file_ending,",\n",2);
-			res = f_write(&file, file_ending,20, &bw);
-
-			memset(version_log,0,sizeof(version_log));
-			sprintf(version_log, "DLM:%02d,NCI:%02d,RCI:%08x,RsC:%08x,RF:%02d,CS:%02d,PGN:%02d,F1:%02d,NBP:%02d,NRP:%02d,RPM:%02d,PGN:%08x,PGN:%08x,rb1:%04d,rb2:%04d,fs:%09d",
-					data_log_mode, num_can_ids, request_can_id[0], response_can_id[0], response_fifo, can_speed, num_pgns, fifo1_pgn, broadcast_params, req_params, rpm_mode, pgn[0].pgn_id, pgn[1].pgn_id,rb1_size,rb2_size,file_size);
-			res = f_write(&file, version_log, 145, &bw);
-
-			l = 0;
-			do
-			{
-				res = f_close(&file);
-				l++;
-			}while(res != FR_OK && l < 3);
-
-			SCB->AIRCR=0x05fa0004;
-		}
+//		if(heartbeat > 18000)
+//		{
+//			memset(file_ending,0,sizeof(file_ending));
+//			memcpy(file_ending,z.time,6);
+//			strncat(file_ending,",",1);
+//			strncat(file_ending,"SYS RESET\n",10);
+//			res = f_write(&file,file_ending,17,&bw);
+//
+//			for(int s = 0; s < wh_counter; s++)
+//			{
+//				memset(file_ending,0,sizeof(file_ending));
+//				memcpy(file_ending,wh[s].time,6);
+//				strncat(file_ending,",",1);
+//				sprintf(wh_temp,"%1x",wh[s].type);
+//				strncat(file_ending,wh_temp,1);
+//				strncat(file_ending,"\n",1);
+//				for(int q=0;q<500;q++)
+//				{}
+//				res = f_write(&file, file_ending, 9, &bw);
+//				for(int q=0;q<500;q++)
+//				{}
+//			}
+//			if(gps_log_flag)
+//			{
+//				memset(file_ending,0,sizeof(file_ending));
+//				strncat(file_ending,"START DATE: ",12);
+//				strncat(file_ending,Start_Date,6);
+//				strncat(file_ending,"\n",1);
+//				res = f_write(&file, file_ending, 19, &bw);
+//
+//				memset(file_ending,0,sizeof(file_ending));
+//				strncat(file_ending,"END DATE: ",10);
+//				strncat(file_ending,z.date,6);
+//				strncat(file_ending,"\n",1);
+//				res = f_write(&file, file_ending, 17, &bw);
+//			}
+//			memset(version_log,0,sizeof(version_log));
+//			sprintf(version_log, "Payload:%02d,%02d\nCMD:%02d,%02d\nECU:%02d,%02d\nSTM:%02d\nDriver:01\n",ver_1, pay_ver, ver_3, cmd_ver, ver_4, ecu_ver, ver_5);
+//			res = f_write(&file, version_log, 51, &bw);
+//			memset(file_ending,0,sizeof(file_ending));
+//			sprintf(file_ending, "DBC:%02d,", ver_2);
+//			strncat(file_ending,dbc_ver,11);
+//			strncat(file_ending,",\n",2);
+//			res = f_write(&file, file_ending,20, &bw);
+//
+//			memset(version_log,0,sizeof(version_log));
+//			sprintf(version_log, "DLM:%02d,NCI:%02d,RCI:%08x,RsC:%08x,RF:%02d,CS:%02d,PGN:%02d,F1:%02d,NBP:%02d,NRP:%02d,RPM:%02d,PGN:%08x,PGN:%08x,rb1:%04d,rb2:%04d,fs:%09d",
+//					data_log_mode, num_can_ids, request_can_id[0], response_can_id[0], response_fifo, can_speed, num_pgns, fifo1_pgn, broadcast_params, req_params, rpm_mode, pgn[0].pgn_id, pgn[1].pgn_id,rb1_size,rb2_size,file_size);
+//			res = f_write(&file, version_log, 145, &bw);
+//
+//			l = 0;
+//			do
+//			{
+//				res = f_close(&file);
+//				l++;
+//			}while(res != FR_OK && l < 3);
+//
+//			SCB->AIRCR=0x05fa0004;
+//		}
 
 		if(IGN_ON == 1 && ENG_RUNNING == 0 && Update_payload == 1)
 		{
@@ -4452,4 +4452,4 @@ int main()
 
 
 	}
-}	
+}
