@@ -3057,7 +3057,7 @@
 				f_gets(temp_buf, 20, &boot_config);
 				k--;
 			}
-			res = f_write(&boot_config, "1\n", 2, &bw);
+			res = f_write(&boot_config, "1", 1, &bw);
 
 			res = f_close(&boot_config);
 
