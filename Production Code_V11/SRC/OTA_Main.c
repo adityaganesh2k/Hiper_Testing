@@ -24,7 +24,7 @@
 //Timeout Macros
 #define ESP_COUNTER_TIMEOUT 40//CHANGE IT BAKC TO 40
 #define UPLOAD_TIMER_TIMEOUT 1000
-#define RTC_WAKEUP_TIMEOUT 476
+#define RTC_WAKEUP_TIMEOUT 14344
 	//FATFS Variables
 	FATFS fs;            	  	/* Filesystem object */
 	FIL file, boot_config, file_down, IFT, filex,RTC_file;           			/* File object */
