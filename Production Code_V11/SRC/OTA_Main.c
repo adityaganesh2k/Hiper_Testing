@@ -43,7 +43,7 @@
 	//Load DBC
 	uint8_t data_log_mode, num_can_ids, response_fifo, can_speed, num_pgns, fifo1_pgn, copy_of_data_log_mode, copy_of_broadcast_params;
 	uint8_t req_params, rpm_mode;
-	uint32_t request_can_id[2], response_can_id[2];
+	uint32_t request_can_id[2]= {0xFFFFFFFF,0xFFFFFFFF} , response_can_id[2]={0xFFFFFFFF,0xFFFFFFFF};
 	uint32_t heartbeat=0, file_timer=0;
 
 	//CAN
@@ -120,7 +120,7 @@
 
 	char version_log[145];
 	uint8_t file1, file2, file3, file4, file5;
-	uint8_t ver_1, ver_2, ver_3, ver_4, ver_5;			// 1 - Payload version  2 - DBC
+	uint8_t pay_ver, dbc_ver, cmd_ver, ecu_ver, stm_ver;			// 1 - Payload version  2 - DBC
 														// 3 - CMD  4 - ECU   5 - STM
 
 	int stat1 = 0,stat2 = 0, stat3 = 0, stat4 = 0, stat5 = 0;
@@ -144,7 +144,7 @@
 		GPIO_Config_Mode(GPIOA, GPIO_PIN_12, GPIO_MODE_OUT);
 		GPIO_Config_OType(GPIOA, GPIO_PIN_12, GPIO_OTYPE_PP);
 		GPIO_Config_Speed(GPIOA, GPIO_PIN_12, GPIO_LOW_SPEED);
-		GPIO_Config_PuPd(GPIOA, GPIO_PIN_12, GPIO_PUPD_UP);
+		GPIO_Config_PuPd(GPIOA, GPIO_PIN_12, GPIO_PUPD_DOWN);
 	}
 	//wifi power on
 	void wifi_power_on()
@@ -299,51 +299,8 @@
 		char s[5];
 		uint8_t k,i;
 		//Create a new Config File
-		if (f_stat("config.csv", &fno)== FR_NO_FILE)
-		{
-		
-			/* Create a file as new */
-			res = f_open(&file, "config.csv", FA_CREATE_ALWAYS | FA_WRITE|FA_READ);
-			memset(config_buf,0,20);
-			
-			/* Temp File # */
-			sprintf(config_buf,"BLANK");
-			strncat(config_buf,"\n",1);
-			
-			res=f_write(&file, config_buf, 6, &bw);
-			memset(config_buf,0,20);	
-			
-			/* Temp File # */
-			sprintf(config_buf,"000");
-			strncat(config_buf,"\n",1);											
-			
-			res=f_write(&file, config_buf, 4, &bw);
-			memset(config_buf,0,20);	
-			
-//			/* Write a HIPER UNIQUE ID */
-//			device_id_val = get_device_id();
-//			sprintf(config_buf, "%8X", device_id_val);
-//			strncat(config_buf,"\n",1); 										//Pointer is in position 9
-//
-//			res=f_write(&file, config_buf, 9, &bw);
-//			memset(config_buf,0,20);
-//
-//			/* VIN No. */
-//			sprintf(config_buf,"9629799271xxxxxxx");
-//			strncat(config_buf,"\n",1);											//Pointer is in position 38
-//
-//			res=f_write(&file, config_buf, 18, &bw);
-//			memset(config_buf,0,20);
-			
-			/* Close the file */
-			do
-			{
-				res = f_close(&file);
-			}while(res!=FR_OK);
-		}
-		//Check for the temp_file_counter
-		else
-		{
+
+
 			res = f_open(&file, "config.csv", FA_OPEN_ALWAYS|FA_WRITE|FA_READ);
 		
 			memset(config_buf,0,sizeof(config_buf));
@@ -413,7 +370,7 @@
 					k=0;
 				}
 			}
-			ver_1=atoi(s);
+			pay_ver=atoi(s);
 
 			memset(config_buf,0,sizeof(config_buf));
 			f_gets(config_buf,10,&file);
@@ -433,7 +390,7 @@
 					k=0;
 				}
 			}
-			ver_2=atoi(s);
+			dbc_ver=atoi(s);
 
 			memset(config_buf,0,sizeof(config_buf));
 			f_gets(config_buf,10,&file);
@@ -453,7 +410,7 @@
 					k=0;
 				}
 			}
-			ver_3=atoi(s);
+			cmd_ver=atoi(s);
 
 			memset(config_buf,0,sizeof(config_buf));
 			f_gets(config_buf,10,&file);
@@ -473,7 +430,7 @@
 					k=0;
 				}
 			}
-			ver_4=atoi(s);
+			ecu_ver=atoi(s);
 
 
 			memset(config_buf,0,sizeof(config_buf));
@@ -494,7 +451,7 @@
 					k=0;
 				}
 			}
-			ver_5=atoi(s);
+			stm_ver=atoi(s);
 			memset(config_buf, 0, sizeof(config_buf));
 			f_gets(config_buf, 10, &file);
 			memset(s, 0, sizeof(s));
@@ -519,78 +476,8 @@
 			{
 				res = f_close(&file);
 			}while(res!=FR_OK);
-		}
 
-		// Get ECU and Payload Version
-		res = f_open(&file, "ECU_Ver.csv", FA_OPEN_EXISTING|FA_WRITE|FA_READ);
 
-		memset(config_buf,0,sizeof(config_buf));
-		f_gets(config_buf,10,&file);
-
-		memset(config_buf,0,sizeof(config_buf));
-		f_gets(config_buf,10,&file);
-		memset(s,0,sizeof(s));
-		i=0;
-		k=1;
-		while(k)
-		{
-			if(config_buf[i] != '\n')
-			{
-					s[i]=config_buf[i];
-					i++;
-			}
-			else
-			{
-				s[i]='\0';
-				k=0;
-			}
-		}
-		pay_ver=atoi(s);
-
-		memset(config_buf,0,sizeof(config_buf));
-		f_gets(config_buf,10,&file);
-		memset(s,0,sizeof(s));
-		i=0;
-		k=1;
-		while(k)
-		{
-			if(config_buf[i] != '\n')
-			{
-					s[i]=config_buf[i];
-					i++;
-			}
-			else
-			{
-				s[i]='\0';
-				k=0;
-			}
-		}
-		cmd_ver=atoi(s);
-
-		memset(config_buf,0,sizeof(config_buf));
-		f_gets(config_buf,10,&file);
-		memset(s,0,sizeof(s));
-		i=0;
-		k=1;
-		while(k)
-		{
-			if(config_buf[i] != '\n')
-			{
-					s[i]=config_buf[i];
-					i++;
-			}
-			else
-			{
-				s[i]='\0';
-				k=0;
-			}
-		}
-		ecu_ver=atoi(s);
-
-		do
-		{
-			res = f_close(&file);
-		}while(res != FR_OK);
 
 	}
 
@@ -2096,11 +1983,11 @@
 			f_gets(temp_stor,10,&IFT);
 			sscanf(temp_stor,"%d",&stat5);
 
-			file1 = (stat1 != ver_1)?1:0;
-			file2 = (stat2 != ver_2)?1:0;
-			file3 = (stat3 != ver_3)?1:0;
-			file4 = (stat4 != ver_4)?1:0;
-			file5 = (stat5 != ver_5)?1:0;
+			file1 = (stat1 != pay_ver)?1:0;
+			file2 = (stat2 != dbc_ver)?1:0;
+			file3 = (stat3 != cmd_ver)?1:0;
+			file4 = (stat4 != ecu_ver)?1:0;
+			file5 = (stat5 != stm_ver)?1:0;
 
 			res = f_close(&IFT);
 
@@ -3525,7 +3412,7 @@
 		// Mount SD card and Check for Config file 
 			wifi_init();
 			wifi_power_on();
-			wifi_power_off();
+//			wifi_power_off();
 			mount_card();
 			config_file();
 			load_dbc();
@@ -3848,10 +3735,10 @@ int main()
 				res = f_write(&file, file_ending, 17, &bw);
 			}
 			memset(version_log,0,sizeof(version_log));
-			sprintf(version_log, "Payload:%02d,%02d\nCMD:%02d,%02d\nECU:%02d,%02d\nSTM:%02d\nDriver:01\n",ver_1, pay_ver, ver_3, cmd_ver, ver_4, ecu_ver, ver_5);
+			sprintf(version_log, "Payload:%02d,%02d\nCMD:%02d,%02d\nECU:%02d,%02d\nSTM:%02d\nDriver:01\n",pay_ver, pay_ver, cmd_ver, cmd_ver, ecu_ver, ecu_ver, stm_ver);
 			res = f_write(&file, version_log, 51, &bw);
 			memset(file_ending,0,sizeof(file_ending));
-			sprintf(file_ending, "DBC:%02d,", ver_2);
+			sprintf(file_ending, "DBC:%02d,", dbc_ver);
 			strncat(file_ending,dbc_ver,11);
 			strncat(file_ending,",\n",2);
 			res = f_write(&file, file_ending,20, &bw);
@@ -3907,10 +3794,10 @@ int main()
 //				res = f_write(&file, file_ending, 17, &bw);
 //			}
 //			memset(version_log,0,sizeof(version_log));
-//			sprintf(version_log, "Payload:%02d,%02d\nCMD:%02d,%02d\nECU:%02d,%02d\nSTM:%02d\nDriver:01\n",ver_1, pay_ver, ver_3, cmd_ver, ver_4, ecu_ver, ver_5);
+//			sprintf(version_log, "Payload:%02d,%02d\nCMD:%02d,%02d\nECU:%02d,%02d\nSTM:%02d\nDriver:01\n",pay_ver, pay_ver, cmd_ver, cmd_ver, ecu_ver, ecu_ver, stm_ver);
 //			res = f_write(&file, version_log, 51, &bw);
 //			memset(file_ending,0,sizeof(file_ending));
-//			sprintf(file_ending, "DBC:%02d,", ver_2);
+//			sprintf(file_ending, "DBC:%02d,", dbc_ver);
 //			strncat(file_ending,dbc_ver,11);
 //			strncat(file_ending,",\n",2);
 //			res = f_write(&file, file_ending,20, &bw);
@@ -3996,10 +3883,10 @@ int main()
 			}
 
 			memset(version_log,0,sizeof(version_log));
-			sprintf(version_log, "Payload:%02d,%02d\nCMD:%02d,%02d\nECU:%02d,%02d\nSTM:%02d\nDriver:01\n",ver_1, pay_ver, ver_3, cmd_ver, ver_4, ecu_ver, ver_5);
+			sprintf(version_log, "Payload:%02d,%02d\nCMD:%02d,%02d\nECU:%02d,%02d\nSTM:%02d\nDriver:01\n",pay_ver, pay_ver, cmd_ver, cmd_ver, ecu_ver, ecu_ver, stm_ver);
 			res = f_write(&file, version_log, 51, &bw);
 			memset(file_ending,0,sizeof(file_ending));
-			sprintf(file_ending, "DBC:%02d,", ver_2);
+			sprintf(file_ending, "DBC:%02d,", dbc_ver);
 			strncat(file_ending,dbc_ver,11);
 			strncat(file_ending,",\n",2);
 			res = f_write(&file, file_ending,20, &bw);
@@ -4248,10 +4135,10 @@ int main()
 					res = f_write(&file, file_ending, 17, &bw);
 				}
 				memset(version_log,0,sizeof(version_log));
-				sprintf(version_log, "Payload:%02d,%02d\nCMD:%02d,%02d\nECU:%02d,%02d\nSTM:%02d\nDriver:01\n",ver_1, pay_ver, ver_3, cmd_ver, ver_4, ecu_ver, ver_5);
+				sprintf(version_log, "Payload:%02d,%02d\nCMD:%02d,%02d\nECU:%02d,%02d\nSTM:%02d\nDriver:01\n",pay_ver, pay_ver, cmd_ver, cmd_ver, ecu_ver, ecu_ver, stm_ver);
 				res = f_write(&file, version_log, 51, &bw);
 				memset(file_ending,0,sizeof(file_ending));
-				sprintf(file_ending, "DBC:%02d,", ver_2);
+				sprintf(file_ending, "DBC:%02d,", dbc_ver);
 				strncat(file_ending,dbc_ver,11);
 				strncat(file_ending,",\n",2);
 				res = f_write(&file, file_ending,20, &bw);
