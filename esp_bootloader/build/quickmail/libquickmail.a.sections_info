@@ -1,0 +1,246 @@
+In archive /home/anonhiper/esp/hiper_v_02/build/quickmail/libquickmail.a:
+
+quickmail.o:     file format elf32-xtensa-le
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .literal.email_info_attachment_open_dummy 00000004  00000000  00000000  00000034  2**2
+                  CONTENTS, ALLOC, LOAD, RELOC, READONLY, CODE
+  1 .literal.email_info_attachment_close_memory 00000004  00000000  00000000  00000038  2**2
+                  CONTENTS, ALLOC, LOAD, RELOC, READONLY, CODE
+  2 .literal.email_info_attachment_filedata_free_memory 00000008  00000000  00000000  0000003c  2**2
+                  CONTENTS, ALLOC, LOAD, RELOC, READONLY, CODE
+  3 .literal.email_info_attachment_open_memory 00000004  00000000  00000000  00000044  2**2
+                  CONTENTS, ALLOC, LOAD, RELOC, READONLY, CODE
+  4 .literal.email_info_attachment_open_file 00000008  00000000  00000000  00000048  2**2
+                  CONTENTS, ALLOC, LOAD, RELOC, READONLY, CODE
+  5 .literal.email_info_attachment_read_file 00000004  00000000  00000000  00000050  2**2
+                  CONTENTS, ALLOC, LOAD, RELOC, READONLY, CODE
+  6 .literal.email_info_attachment_close_file 00000004  00000000  00000000  00000054  2**2
+                  CONTENTS, ALLOC, LOAD, RELOC, READONLY, CODE
+  7 .literal.email_info_attachment_read_memory 00000004  00000000  00000000  00000058  2**2
+                  CONTENTS, ALLOC, LOAD, RELOC, READONLY, CODE
+  8 .literal.xferinfo 00000034  00000000  00000000  0000005c  2**2
+                  CONTENTS, ALLOC, LOAD, RELOC, READONLY, CODE
+  9 .literal.randomize_zeros 00000008  00000000  00000000  00000090  2**2
+                  CONTENTS, ALLOC, LOAD, RELOC, READONLY, CODE
+ 10 .literal.str_append 00000014  00000000  00000000  00000098  2**2
+                  CONTENTS, ALLOC, LOAD, RELOC, READONLY, CODE
+ 11 .literal.email_info_string_list_add 00000008  00000000  00000000  000000ac  2**2
+                  CONTENTS, ALLOC, LOAD, RELOC, READONLY, CODE
+ 12 .literal.email_info_string_list_free 00000008  00000000  00000000  000000b4  2**2
+                  CONTENTS, ALLOC, LOAD, RELOC, READONLY, CODE
+ 13 .literal.email_info_string_list_concatenate 0000001c  00000000  00000000  000000bc  2**2
+                  CONTENTS, ALLOC, LOAD, RELOC, READONLY, CODE
+ 14 .literal.quickmail_get_data 000001ac  00000000  00000000  000000d8  2**2
+                  CONTENTS, ALLOC, LOAD, RELOC, READONLY, CODE
+ 15 .literal.email_info_attachment_list_add 00000010  00000000  00000000  00000284  2**2
+                  CONTENTS, ALLOC, LOAD, RELOC, READONLY, CODE
+ 16 .literal.email_info_attachment_list_free_entry 00000010  00000000  00000000  00000294  2**2
+                  CONTENTS, ALLOC, LOAD, RELOC, READONLY, CODE
+ 17 .literal.email_info_attachment_list_free 00000004  00000000  00000000  000002a4  2**2
+                  CONTENTS, ALLOC, LOAD, RELOC, READONLY, CODE
+ 18 .literal.email_info_attachment_list_delete 00000008  00000000  00000000  000002a8  2**2
+                  CONTENTS, ALLOC, LOAD, RELOC, READONLY, CODE
+ 19 .literal.email_info_attachment_list_add_dummy 0000000c  00000000  00000000  000002b0  2**2
+                  CONTENTS, ALLOC, LOAD, RELOC, READONLY, CODE
+ 20 .literal.email_info_attachment_list_add_file 00000018  00000000  00000000  000002bc  2**2
+                  CONTENTS, ALLOC, LOAD, RELOC, READONLY, CODE
+ 21 .literal.email_info_attachment_list_add_memory 00000018  00000000  00000000  000002d4  2**2
+                  CONTENTS, ALLOC, LOAD, RELOC, READONLY, CODE
+ 22 .literal.quickmail_get_version 00000004  00000000  00000000  000002ec  2**2
+                  CONTENTS, ALLOC, LOAD, RELOC, READONLY, CODE
+ 23 .literal.quickmail_cleanup 00000004  00000000  00000000  000002f0  2**2
+                  CONTENTS, ALLOC, LOAD, RELOC, READONLY, CODE
+ 24 .literal.quickmail_create 00000018  00000000  00000000  000002f4  2**2
+                  CONTENTS, ALLOC, LOAD, RELOC, READONLY, CODE
+ 25 .literal.quickmail_destroy 00000030  00000000  00000000  0000030c  2**2
+                  CONTENTS, ALLOC, LOAD, RELOC, READONLY, CODE
+ 26 .literal.quickmail_set_from 00000008  00000000  00000000  0000033c  2**2
+                  CONTENTS, ALLOC, LOAD, RELOC, READONLY, CODE
+ 27 .literal.quickmail_add_to 00000004  00000000  00000000  00000344  2**2
+                  CONTENTS, ALLOC, LOAD, RELOC, READONLY, CODE
+ 28 .literal.quickmail_add_cc 00000004  00000000  00000000  00000348  2**2
+                  CONTENTS, ALLOC, LOAD, RELOC, READONLY, CODE
+ 29 .literal.quickmail_add_bcc 00000004  00000000  00000000  0000034c  2**2
+                  CONTENTS, ALLOC, LOAD, RELOC, READONLY, CODE
+ 30 .literal.quickmail_set_subject 00000008  00000000  00000000  00000350  2**2
+                  CONTENTS, ALLOC, LOAD, RELOC, READONLY, CODE
+ 31 .literal.quickmail_add_header 0000000c  00000000  00000000  00000358  2**2
+                  CONTENTS, ALLOC, LOAD, RELOC, READONLY, CODE
+ 32 .literal.quickmail_set_body 00000014  00000000  00000000  00000364  2**2
+                  CONTENTS, ALLOC, LOAD, RELOC, READONLY, CODE
+ 33 .literal.quickmail_get_body 00000008  00000000  00000000  00000378  2**2
+                  CONTENTS, ALLOC, LOAD, RELOC, READONLY, CODE
+ 34 .literal.quickmail_add_body_file 00000018  00000000  00000000  00000380  2**2
+                  CONTENTS, ALLOC, LOAD, RELOC, READONLY, CODE
+ 35 .literal.quickmail_add_body_memory 00000008  00000000  00000000  00000398  2**2
+                  CONTENTS, ALLOC, LOAD, RELOC, READONLY, CODE
+ 36 .literal.quickmail_add_body_custom 00000010  00000000  00000000  000003a0  2**2
+                  CONTENTS, ALLOC, LOAD, RELOC, READONLY, CODE
+ 37 .literal.quickmail_remove_body 00000004  00000000  00000000  000003b0  2**2
+                  CONTENTS, ALLOC, LOAD, RELOC, READONLY, CODE
+ 38 .literal.quickmail_add_attachment_file 00000004  00000000  00000000  000003b4  2**2
+                  CONTENTS, ALLOC, LOAD, RELOC, READONLY, CODE
+ 39 .literal.quickmail_add_attachment_memory 00000004  00000000  00000000  000003b8  2**2
+                  CONTENTS, ALLOC, LOAD, RELOC, READONLY, CODE
+ 40 .literal.quickmail_add_attachment_custom 0000000c  00000000  00000000  000003bc  2**2
+                  CONTENTS, ALLOC, LOAD, RELOC, READONLY, CODE
+ 41 .literal.quickmail_remove_attachment 00000004  00000000  00000000  000003c8  2**2
+                  CONTENTS, ALLOC, LOAD, RELOC, READONLY, CODE
+ 42 .literal.quickmail_fsave 00000008  00000000  00000000  000003cc  2**2
+                  CONTENTS, ALLOC, LOAD, RELOC, READONLY, CODE
+ 43 .literal.add_angle_brackets 0000000c  00000000  00000000  000003d4  2**2
+                  CONTENTS, ALLOC, LOAD, RELOC, READONLY, CODE
+ 44 .literal.quickmail_protocol_send 000000f4  00000000  00000000  000003e0  2**2
+                  CONTENTS, ALLOC, LOAD, RELOC, READONLY, CODE
+ 45 .literal.quickmail_send 00000004  00000000  00000000  000004d4  2**2
+                  CONTENTS, ALLOC, LOAD, RELOC, READONLY, CODE
+ 46 .literal.quickmail_send_secure 00000004  00000000  00000000  000004d8  2**2
+                  CONTENTS, ALLOC, LOAD, RELOC, READONLY, CODE
+ 47 .text         00000000  00000000  00000000  000004dc  2**0
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+ 48 .data         00000000  00000000  00000000  000004dc  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+ 49 .bss          00000000  00000000  00000000  000004dc  2**0
+                  ALLOC
+ 50 .text.email_info_attachment_open_dummy 00000008  00000000  00000000  000004dc  2**2
+                  CONTENTS, ALLOC, LOAD, RELOC, READONLY, CODE
+ 51 .text.email_info_attachment_read_dummy 00000007  00000000  00000000  000004e4  2**2
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+ 52 .text.email_info_attachment_close_memory 0000000f  00000000  00000000  000004ec  2**2
+                  CONTENTS, ALLOC, LOAD, RELOC, READONLY, CODE
+ 53 .text.email_info_attachment_filedata_free_memory 0000001b  00000000  00000000  000004fc  2**2
+                  CONTENTS, ALLOC, LOAD, RELOC, READONLY, CODE
+ 54 .text.email_info_attachment_open_memory 00000028  00000000  00000000  00000518  2**2
+                  CONTENTS, ALLOC, LOAD, RELOC, READONLY, CODE
+ 55 .rodata.str1.4 000002ff  00000000  00000000  00000540  2**2
+                  CONTENTS, ALLOC, LOAD, READONLY, DATA
+ 56 .text.email_info_attachment_open_file 00000012  00000000  00000000  00000840  2**2
+                  CONTENTS, ALLOC, LOAD, RELOC, READONLY, CODE
+ 57 .text.email_info_attachment_read_file 00000015  00000000  00000000  00000854  2**2
+                  CONTENTS, ALLOC, LOAD, RELOC, READONLY, CODE
+ 58 .text.email_info_attachment_close_file 0000000f  00000000  00000000  0000086c  2**2
+                  CONTENTS, ALLOC, LOAD, RELOC, READONLY, CODE
+ 59 .text.email_info_attachment_read_memory 00000027  00000000  00000000  0000087c  2**2
+                  CONTENTS, ALLOC, LOAD, RELOC, READONLY, CODE
+ 60 .text.xferinfo 00000085  00000000  00000000  000008a4  2**2
+                  CONTENTS, ALLOC, LOAD, RELOC, READONLY, CODE
+ 61 .text.randomize_zeros 0000003c  00000000  00000000  0000092c  2**2
+                  CONTENTS, ALLOC, LOAD, RELOC, READONLY, CODE
+ 62 .text.str_append 00000048  00000000  00000000  00000968  2**2
+                  CONTENTS, ALLOC, LOAD, RELOC, READONLY, CODE
+ 63 .text.email_info_string_list_add 00000034  00000000  00000000  000009b0  2**2
+                  CONTENTS, ALLOC, LOAD, RELOC, READONLY, CODE
+ 64 .text.email_info_string_list_free 00000023  00000000  00000000  000009e4  2**2
+                  CONTENTS, ALLOC, LOAD, RELOC, READONLY, CODE
+ 65 .text.email_info_string_list_concatenate 00000051  00000000  00000000  00000a08  2**2
+                  CONTENTS, ALLOC, LOAD, RELOC, READONLY, CODE
+ 66 .text.quickmail_get_data 00000666  00000000  00000000  00000a5c  2**2
+                  CONTENTS, ALLOC, LOAD, RELOC, READONLY, CODE
+ 67 .text.email_info_attachment_list_add 00000076  00000000  00000000  000010c4  2**2
+                  CONTENTS, ALLOC, LOAD, RELOC, READONLY, CODE
+ 68 .text.email_info_attachment_list_free_entry 00000042  00000000  00000000  0000113c  2**2
+                  CONTENTS, ALLOC, LOAD, RELOC, READONLY, CODE
+ 69 .text.email_info_attachment_list_free 0000001b  00000000  00000000  00001180  2**2
+                  CONTENTS, ALLOC, LOAD, RELOC, READONLY, CODE
+ 70 .text.email_info_attachment_list_delete 00000030  00000000  00000000  0000119c  2**2
+                  CONTENTS, ALLOC, LOAD, RELOC, READONLY, CODE
+ 71 .text.email_info_attachment_list_close_handles 0000001c  00000000  00000000  000011cc  2**2
+                  CONTENTS, ALLOC, LOAD, RELOC, READONLY, CODE
+ 72 .text.email_info_attachment_list_add_dummy 00000020  00000000  00000000  000011e8  2**2
+                  CONTENTS, ALLOC, LOAD, RELOC, READONLY, CODE
+ 73 .text.email_info_attachment_list_add_file 00000049  00000000  00000000  00001208  2**2
+                  CONTENTS, ALLOC, LOAD, RELOC, READONLY, CODE
+ 74 .text.email_info_attachment_list_add_memory 0000003a  00000000  00000000  00001254  2**2
+                  CONTENTS, ALLOC, LOAD, RELOC, READONLY, CODE
+ 75 .text.quickmail_get_version 00000008  00000000  00000000  00001290  2**2
+                  CONTENTS, ALLOC, LOAD, RELOC, READONLY, CODE
+ 76 .text.quickmail_cleanup 0000000d  00000000  00000000  00001298  2**2
+                  CONTENTS, ALLOC, LOAD, RELOC, READONLY, CODE
+ 77 .text.quickmail_create 000000ba  00000000  00000000  000012a8  2**2
+                  CONTENTS, ALLOC, LOAD, RELOC, READONLY, CODE
+ 78 .text.quickmail_destroy 0000006a  00000000  00000000  00001364  2**2
+                  CONTENTS, ALLOC, LOAD, RELOC, READONLY, CODE
+ 79 .text.quickmail_set_from 00000018  00000000  00000000  000013d0  2**2
+                  CONTENTS, ALLOC, LOAD, RELOC, READONLY, CODE
+ 80 .text.quickmail_get_from 00000007  00000000  00000000  000013e8  2**2
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+ 81 .text.quickmail_add_to 0000000f  00000000  00000000  000013f0  2**2
+                  CONTENTS, ALLOC, LOAD, RELOC, READONLY, CODE
+ 82 .text.quickmail_add_cc 00000010  00000000  00000000  00001400  2**2
+                  CONTENTS, ALLOC, LOAD, RELOC, READONLY, CODE
+ 83 .text.quickmail_add_bcc 00000010  00000000  00000000  00001410  2**2
+                  CONTENTS, ALLOC, LOAD, RELOC, READONLY, CODE
+ 84 .text.quickmail_set_subject 00000022  00000000  00000000  00001420  2**2
+                  CONTENTS, ALLOC, LOAD, RELOC, READONLY, CODE
+ 85 .text.quickmail_get_subject 00000007  00000000  00000000  00001444  2**2
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+ 86 .text.quickmail_add_header 0000001e  00000000  00000000  0000144c  2**2
+                  CONTENTS, ALLOC, LOAD, RELOC, READONLY, CODE
+ 87 .text.quickmail_set_body 0000003a  00000000  00000000  0000146c  2**2
+                  CONTENTS, ALLOC, LOAD, RELOC, READONLY, CODE
+ 88 .text.quickmail_get_body 0000006a  00000000  00000000  000014a8  2**2
+                  CONTENTS, ALLOC, LOAD, RELOC, READONLY, CODE
+ 89 .text.quickmail_add_body_file 00000030  00000000  00000000  00001514  2**2
+                  CONTENTS, ALLOC, LOAD, RELOC, READONLY, CODE
+ 90 .text.quickmail_add_body_memory 00000022  00000000  00000000  00001544  2**2
+                  CONTENTS, ALLOC, LOAD, RELOC, READONLY, CODE
+ 91 .text.quickmail_add_body_custom 00000038  00000000  00000000  00001568  2**2
+                  CONTENTS, ALLOC, LOAD, RELOC, READONLY, CODE
+ 92 .text.quickmail_remove_body 00000012  00000000  00000000  000015a0  2**2
+                  CONTENTS, ALLOC, LOAD, RELOC, READONLY, CODE
+ 93 .text.quickmail_list_bodies 00000020  00000000  00000000  000015b4  2**2
+                  CONTENTS, ALLOC, LOAD, RELOC, READONLY, CODE
+ 94 .text.quickmail_add_attachment_file 00000012  00000000  00000000  000015d4  2**2
+                  CONTENTS, ALLOC, LOAD, RELOC, READONLY, CODE
+ 95 .text.quickmail_add_attachment_memory 00000018  00000000  00000000  000015e8  2**2
+                  CONTENTS, ALLOC, LOAD, RELOC, READONLY, CODE
+ 96 .text.quickmail_add_attachment_custom 00000032  00000000  00000000  00001600  2**2
+                  CONTENTS, ALLOC, LOAD, RELOC, READONLY, CODE
+ 97 .text.quickmail_remove_attachment 00000012  00000000  00000000  00001634  2**2
+                  CONTENTS, ALLOC, LOAD, RELOC, READONLY, CODE
+ 98 .text.quickmail_list_attachments 00000020  00000000  00000000  00001648  2**2
+                  CONTENTS, ALLOC, LOAD, RELOC, READONLY, CODE
+ 99 .text.quickmail_set_debug_log 00000007  00000000  00000000  00001668  2**2
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+100 .text.quickmail_fsave 00000033  00000000  00000000  00001670  2**2
+                  CONTENTS, ALLOC, LOAD, RELOC, READONLY, CODE
+101 .text.add_angle_brackets 00000046  00000000  00000000  000016a4  2**2
+                  CONTENTS, ALLOC, LOAD, RELOC, READONLY, CODE
+102 .text.quickmail_protocol_send 00000259  00000000  00000000  000016ec  2**2
+                  CONTENTS, ALLOC, LOAD, RELOC, READONLY, CODE
+103 .text.quickmail_send 00000019  00000000  00000000  00001948  2**2
+                  CONTENTS, ALLOC, LOAD, RELOC, READONLY, CODE
+104 .text.quickmail_send_secure 00000019  00000000  00000000  00001964  2**2
+                  CONTENTS, ALLOC, LOAD, RELOC, READONLY, CODE
+105 .data.quickmail_timeout 00000004  00000000  00000000  00001980  2**2
+                  CONTENTS, ALLOC, LOAD, DATA
+106 .data.quickmail_verbose 00000004  00000000  00000000  00001984  2**2
+                  CONTENTS, ALLOC, LOAD, DATA
+107 .data.quickmail_progress 00000004  00000000  00000000  00001988  2**2
+                  CONTENTS, ALLOC, LOAD, DATA
+108 .debug_frame  00000520  00000000  00000000  0000198c  2**2
+                  CONTENTS, RELOC, READONLY, DEBUGGING
+109 .debug_info   00003d72  00000000  00000000  00001eac  2**0
+                  CONTENTS, RELOC, READONLY, DEBUGGING
+110 .debug_abbrev 000003f6  00000000  00000000  00005c1e  2**0
+                  CONTENTS, READONLY, DEBUGGING
+111 .debug_loc    00000e9d  00000000  00000000  00006014  2**0
+                  CONTENTS, RELOC, READONLY, DEBUGGING
+112 .debug_aranges 000001c8  00000000  00000000  00006eb1  2**0
+                  CONTENTS, RELOC, READONLY, DEBUGGING
+113 .debug_ranges 000001d0  00000000  00000000  00007079  2**0
+                  CONTENTS, RELOC, READONLY, DEBUGGING
+114 .debug_line   000014e7  00000000  00000000  00007249  2**0
+                  CONTENTS, RELOC, READONLY, DEBUGGING
+115 .debug_str    000033bf  00000000  00000000  00008730  2**0
+                  CONTENTS, READONLY, DEBUGGING
+116 .comment      0000003b  00000000  00000000  0000baef  2**0
+                  CONTENTS, READONLY
+117 .xtensa.info  00000038  00000000  00000000  0000bb2a  2**0
+                  CONTENTS, READONLY
+118 .xt.lit       00000178  00000000  00000000  0000bb62  2**0
+                  CONTENTS, RELOC, READONLY
+119 .xt.prop      00001260  00000000  00000000  0000bcda  2**0
+                  CONTENTS, RELOC, READONLY

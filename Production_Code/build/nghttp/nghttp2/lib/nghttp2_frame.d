@@ -1,0 +1,54 @@
+nghttp2/lib/nghttp2_frame.o: \
+ /home/aditya/esp/esp-idf/components/nghttp/nghttp2/lib/nghttp2_frame.c \
+ /home/aditya/esp/esp-idf/components/nghttp/nghttp2/lib/nghttp2_frame.h \
+ /home/aditya/esp/esp-idf/components/nghttp/port/include/config.h \
+ /home/aditya/esp/esp-idf/components/nghttp/nghttp2/lib/includes/nghttp2/nghttp2.h \
+ /home/aditya/esp/esp-idf/components/nghttp/port/include/nghttp2/nghttp2ver.h \
+ /home/aditya/esp/esp-idf/components/nghttp/nghttp2/lib/nghttp2_hd.h \
+ /home/aditya/esp/esp-idf/components/nghttp/nghttp2/lib/nghttp2_hd_huffman.h \
+ /home/aditya/esp/esp-idf/components/nghttp/nghttp2/lib/nghttp2_buf.h \
+ /home/aditya/esp/esp-idf/components/nghttp/nghttp2/lib/nghttp2_int.h \
+ /home/aditya/esp/esp-idf/components/nghttp/nghttp2/lib/nghttp2_mem.h \
+ /home/aditya/esp/esp-idf/components/nghttp/nghttp2/lib/nghttp2_rcbuf.h \
+ /home/aditya/esp/esp-idf/components/newlib/platform_include/assert.h \
+ /home/aditya/esp/ESP/Production_Code/build/include/sdkconfig.h \
+ /home/aditya/esp/esp-idf/components/newlib/platform_include/errno.h \
+ /home/aditya/esp/esp-idf/components/nghttp/nghttp2/lib/nghttp2_helper.h \
+ /home/aditya/esp/esp-idf/components/nghttp/nghttp2/lib/nghttp2_net.h \
+ /home/aditya/esp/esp-idf/components/nghttp/nghttp2/lib/nghttp2_priority_spec.h \
+ /home/aditya/esp/esp-idf/components/nghttp/nghttp2/lib/nghttp2_debug.h
+
+/home/aditya/esp/esp-idf/components/nghttp/nghttp2/lib/nghttp2_frame.h:
+
+/home/aditya/esp/esp-idf/components/nghttp/port/include/config.h:
+
+/home/aditya/esp/esp-idf/components/nghttp/nghttp2/lib/includes/nghttp2/nghttp2.h:
+
+/home/aditya/esp/esp-idf/components/nghttp/port/include/nghttp2/nghttp2ver.h:
+
+/home/aditya/esp/esp-idf/components/nghttp/nghttp2/lib/nghttp2_hd.h:
+
+/home/aditya/esp/esp-idf/components/nghttp/nghttp2/lib/nghttp2_hd_huffman.h:
+
+/home/aditya/esp/esp-idf/components/nghttp/nghttp2/lib/nghttp2_buf.h:
+
+/home/aditya/esp/esp-idf/components/nghttp/nghttp2/lib/nghttp2_int.h:
+
+/home/aditya/esp/esp-idf/components/nghttp/nghttp2/lib/nghttp2_mem.h:
+
+/home/aditya/esp/esp-idf/components/nghttp/nghttp2/lib/nghttp2_rcbuf.h:
+
+/home/aditya/esp/esp-idf/components/newlib/platform_include/assert.h:
+
+/home/aditya/esp/ESP/Production_Code/build/include/sdkconfig.h:
+
+/home/aditya/esp/esp-idf/components/newlib/platform_include/errno.h:
+
+/home/aditya/esp/esp-idf/components/nghttp/nghttp2/lib/nghttp2_helper.h:
+
+/home/aditya/esp/esp-idf/components/nghttp/nghttp2/lib/nghttp2_net.h:
+
+/home/aditya/esp/esp-idf/components/nghttp/nghttp2/lib/nghttp2_priority_spec.h:
+
+/home/aditya/esp/esp-idf/components/nghttp/nghttp2/lib/nghttp2_debug.h:
+/home/aditya/esp/esp-idf/components/nghttp/nghttp2/lib/nghttp2_frame.c:
